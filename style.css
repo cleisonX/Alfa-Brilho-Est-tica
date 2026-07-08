@@ -313,6 +313,11 @@ nav a:hover {
 }
 
 /* GALERIA */
+.galeria {
+    padding-top: 90px !important;
+    padding-bottom: 25px !important;
+}
+
 .galeria-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -763,9 +768,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ===== CORREÇÃO DEFINITIVA PARA CELULAR ===== */
-
-/* Remove o fundo cinza ao clicar em TODOS OS BOTÕES */
+/* CORREÇÃO DEFINITIVA PARA CELULAR */
 .carrossel-btn,
 .carrossel-btn *,
 .btn-topo,
@@ -781,7 +784,7 @@ footer {
     outline: none !important;
 }
 
-/* CORREÇÃO DO FUNDO CINZA - FORÇADO */
+/* CORREÇÃO DO FUNDO CINZA */
 .carrossel-btn {
     touch-action: manipulation !important;
     -webkit-tap-highlight-color: transparent !important;
@@ -800,7 +803,7 @@ footer {
     background: rgba(0, 0, 0, 0.6) !important;
 }
 
-/* EFEITO DE CLIQUE (SÓ O ENCOLHIMENTO) */
+/* EFEITO DE CLIQUE */
 .carrossel-btn:active {
     transform: translateY(-50%) scale(0.95) !important;
     transition: transform 0.1s ease !important;
