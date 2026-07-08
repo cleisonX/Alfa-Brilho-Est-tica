@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfa Brilho - Estética Automotiva e Residencial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="imagens/letrasfundoremovido.png" alt="Logo Alfa Brilho">
+        </div>
+
+        <!-- Botão Hamburguer -->
+        <div class="menu-hamburguer" id="menu-hamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav-menu">
+            <a href="#inicio">Início</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <a href="#" class="btn-topo">AGENDAR HORÁRIO</a>
+    </header>
+
+    <section class="hero" id="inicio">
+        <img src="imagens/imagemsemfundo.png" alt="Banner Principal">
+    </section>
+
+    <!-- SEÇÃO SERVIÇOS -->
+    <section class="servicos" id="servicos">
+        <h2>NOSSOS SERVIÇOS</h2>
+
+        <div class="cards">
+            <div class="card">
+                <i class="fas fa-car"></i>
+                <h3>Higienização Automotiva</h3>
+                <p>Remoção completa de sujeiras e odores,
+                    garantindo um ambiente interno mais saudável e agradável para dirigir.</p>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-soap"></i>
+                <h3>Polimento Comercial</h3>
+                <p>Tratamento especializado para superfícies,
+                    deixando o espaço limpo, brilhante e com aparência renovada."</p>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-couch"></i>
+                <h3>Higienização de Estofados</h3>
+                <p>Eliminação de ácaros, manchas e impurezas,
+                    prolongando a vida útil dos móveis e proporcionando mais conforto e bem-estar.</p>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-house"></i>
+                <h3>Limpeza Residencial</h3>
+                <p>Serviço detalhado para cada cômodo da casa,
+                    assegurando higiene, frescor e um lar mais acolhedor para toda a família.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="galeria" id="galeria">
+        <h2>GALERIA DE ATENDIMENTOS</h2>
+
+        <!-- Carrossel -->
+        <div class="carrossel-container">
+            <div class="carrossel-wrapper">
+                <div class="carrossel-slides" id="carrossel-slides">
+                    <div class="carrossel-slide ativo">
+                        <img src="imagens/higienizacao1.jpeg" alt="Atendimento 1">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="imagens/higienizacao2.jpeg" alt="Atendimento 2">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="imagens/higienizacao3.jpeg" alt="Atendimento 3">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="imagens/higirnização4.jpeg" alt="Atendimento 4">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="imagens/higienização5.jpeg" alt="Atendimento 5">
+                    </div>
+                    <div class="carrossel-slide">
+                        <img src="imagens/higienização6.jpeg" alt="Atendimento 6">
+                    </div>
+                </div>
+
+                <!-- Botões de navegação -->
+                <button class="carrossel-btn prev" id="carrossel-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carrossel-btn next" id="carrossel-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Indicadores -->
+            <div class="carrossel-indicadores" id="carrossel-indicadores">
+                <span class="indicador ativo" data-index="0"></span>
+                <span class="indicador" data-index="1"></span>
+                <span class="indicador" data-index="2"></span>
+                <span class="indicador" data-index="3"></span>
+                <span class="indicador" data-index="4"></span>
+                <span class="indicador" data-index="5"></span>
+            </div>
+        </div>
+
+        <a href="#" class="btn-central">AGENDAR HORÁRIO</a>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-fechar" id="lightbox-fechar">&times;</span>
+        <img class="lightbox-imagem" id="lightbox-imagem" src="" alt="Imagem ampliada">
+        <div class="lightbox-legenda" id="lightbox-legenda"></div>
+    </div>
+
+    <section class="contato" id="contato">
+        <div class="info">
+            <h2>CONTATO</h2>
+            <p><i class="fab fa-whatsapp"></i> (51) 99381-1732</p>
+            <p><i class="fas fa-envelope"></i> dionamoreira07@gmail.com</p>
+            <p><i class="fas fa-location-dot"></i> Arroio do Tigre - RS</p>
+        </div>
+
+        <form id="form-contato">
+            <h2>Envie-nos uma mensagem</h2>
+            <input type="text" id="contato-nome" placeholder="Nome completo" required>
+            <input type="email" id="contato-email" placeholder="E-Mail" required>
+            <input type="tel" id="contato-telefone" placeholder="Telefone (opcional)">
+            <textarea id="contato-mensagem" placeholder="Mensagem" rows="4" required></textarea>
+            <button type="submit" id="btn-enviar-contato">
+                <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+            </button>
+
+            <!-- Feedback de carregamento -->
+            <div class="loading-contato" style="display: none; margin-top: 15px; color: #d4af37;">
+                <i class="fas fa-spinner fa-spin"></i> Enviando mensagem...
+            </div>
+            <div class="sucesso-contato" style="display: none; margin-top: 15px; color: #25d366;">
+                <i class="fas fa-check-circle"></i> Mensagem enviada com sucesso!
+            </div>
+        </form>
+    </section>
+
+
+
+    <!-- Modal de Agendamento -->
+    <div class="modal" id="modal-agendamento">
+        <div class="modal-content">
+            <span class="modal-fechar" id="fechar-modal">&times;</span>
+
+            <h2>AGENDAR HORÁRIO</h2>
+            <p class="modal-subtitulo">Preencha os dados e agende pelo WhatsApp</p>
+
+            <form id="form-agendamento">
+                <div class="form-group">
+                    <label for="nome-cliente">Seu nome *</label>
+                    <input type="text" id="nome-cliente" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone-cliente">Telefone/WhatsApp *</label>
+                    <input type="tel" id="telefone-cliente" placeholder="(51) 99381-1732" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="servico-agendamento">Serviço desejado *</label>
+                    <select id="servico-agendamento" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="Higienização Automotiva">Higienização Automotiva</option>
+                        <option value="Polimento Automotivo">Polimento Comercial</option>
+                        <option value="Higienização de Estofados">Higienização de Estofados</option>
+                        <option value="Limpeza Residencial">Limpeza Residencial</option>
+                        <option value="Pacote Completo">Pacote Completo</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data-agendamento">Data *</label>
+                        <input type="date" id="data-agendamento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora-agendamento">Horário *</label>
+                        <input type="time" id="hora-agendamento" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="obs-agendamento">Observações</label>
+                    <textarea id="obs-agendamento"
+                        placeholder="Alguma informação adicional? Ex: modelo do carro, endereço..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-whatsapp-agendar" id="btn-enviar-whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Agendar via WhatsApp</span>
+                    <div class="spinner"></div>
+                </button>
+
+                <div class="badge-confirmacao" id="badge-confirmacao">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Agendamento Enviado!</h3>
+                    <p>Em breve entraremos em contato via WhatsApp.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2026 Alfa Brilho - Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
