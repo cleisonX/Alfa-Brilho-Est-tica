@@ -365,7 +365,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Escape' && lightbox && lightbox.classList.contains('ativo')) fecharLightbox();
     });
 
-    /* CARROSSEL */
+    /* CARROSSEL CORRIGIDO */
     const carContainer = document.querySelector('.carrossel-container');
     const slidesWrapper = document.getElementById('carrossel-slides');
     const slides = Array.from(document.querySelectorAll('.carrossel-slide'));
@@ -379,13 +379,24 @@ document.addEventListener('DOMContentLoaded', function () {
         let intervalMs = 5000;
         let timer = null;
         let direction = 1;
+        let bloqueado = false;
 
         function atualizar() {
+            slidesWrapper.style.transition = 'transform 0.5s ease-in-out';
             slidesWrapper.style.transform = `translateX(-${index * 100}%)`;
             indicadores.forEach((d, i) => d.classList.toggle('ativo', i === index));
         }
 
-        function goTo(i) { index = (i + total) % total; atualizar(); }
+        function goTo(i) {
+            if (bloqueado) return;
+            bloqueado = true;
+            index = (i + total) % total;
+            atualizar();
+            setTimeout(() => {
+                bloqueado = false;
+            }, 550);
+        }
+
         function next() { goTo(index + 1); }
         function prev() { goTo(index - 1); }
 
@@ -393,32 +404,77 @@ document.addEventListener('DOMContentLoaded', function () {
         function stopAutoplay() { if (timer) { clearInterval(timer); timer = null; } }
         function restartAutoplay() { stopAutoplay(); startAutoplay(); }
 
-        if (btnNext) btnNext.addEventListener('click', (e) => { e.stopPropagation(); next(); restartAutoplay(); });
-        if (btnPrev) btnPrev.addEventListener('click', (e) => { e.stopPropagation(); prev(); restartAutoplay(); });
+        // BOTÃO AVANÇAR
+        if (btnNext) {
+            const novoBtnNext = btnNext.cloneNode(true);
+            btnNext.parentNode.replaceChild(novoBtnNext, btnNext);
+            
+            novoBtnNext.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                next();
+                restartAutoplay();
+            });
+        }
 
+        // BOTÃO VOLTAR
+        if (btnPrev) {
+            const novoBtnPrev = btnPrev.cloneNode(true);
+            btnPrev.parentNode.replaceChild(novoBtnPrev, btnPrev);
+            
+            novoBtnPrev.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                prev();
+                restartAutoplay();
+            });
+        }
+
+        // INDICADORES
         indicadores.forEach(dot => {
-            dot.addEventListener('click', function () {
+            dot.addEventListener('click', function() {
                 const idx = parseInt(this.dataset.index, 10);
                 if (!isNaN(idx)) { goTo(idx); restartAutoplay(); }
             });
         });
 
+        // MOUSE
         carContainer.addEventListener('mouseenter', stopAutoplay);
         carContainer.addEventListener('mouseleave', startAutoplay);
 
+        // TOUCH
         let startX = 0, endX = 0, threshold = 40;
-        carContainer.addEventListener('touchstart', (e) => { stopAutoplay(); startX = e.touches[0].clientX; }, { passive: true });
-        carContainer.addEventListener('touchmove', (e) => { endX = e.touches[0].clientX; }, { passive: true });
-        carContainer.addEventListener('touchend', () => {
-            const dx = endX - startX;
-            if (dx > threshold) prev();
-            else if (dx < -threshold) next();
-            restartAutoplay();
-            startX = endX = 0;
-        });
+        let isSwiping = false;
 
+        carContainer.addEventListener('touchstart', (e) => {
+            if (e.target.closest('.carrossel-btn')) return;
+            stopAutoplay();
+            startX = e.touches[0].clientX;
+            isSwiping = true;
+        }, { passive: true });
+
+        carContainer.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            if (e.target.closest('.carrossel-btn')) return;
+            endX = e.touches[0].clientX;
+        }, { passive: true });
+
+        carContainer.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            if (e.target.closest('.carrossel-btn')) {
+                isSwiping = false;
+                return;
+            }
+            const dx = endX - startX;
+            if (dx > threshold) { prev(); restartAutoplay(); }
+            else if (dx < -threshold) { next(); restartAutoplay(); }
+            isSwiping = false;
+            startX = endX = 0;
+        }, { passive: true });
+
+        // LIGHTBOX NO CARROSSEL
         document.querySelectorAll('.carrossel-slide img').forEach(img => {
-            img.addEventListener('click', function () {
+            img.addEventListener('click', function() {
                 if (!lightbox || !lightboxImagem) return;
                 lightbox.classList.add('ativo');
                 lightbox.style.display = 'flex';
