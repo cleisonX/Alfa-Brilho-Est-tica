@@ -1083,3 +1083,20 @@ footer {
         padding: 8px 0 5px 0;
     }
 }
+.carrossel-btn {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.carrossel-btn:active {
+    transform: translateY(-50%) scale(0.95) !important;
+    transition: transform 0.1s ease !important;
+}
+
+@media (hover: none) {
+    .carrossel-btn:hover {
+        background: rgba(0, 0, 0, 0.6);
+        color: #d4af37;
+        transform: translateY(-50%);
+    }
+}
