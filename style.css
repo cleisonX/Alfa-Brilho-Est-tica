@@ -763,6 +763,75 @@ footer {
     font-size: 0.9rem;
 }
 
+/* ===== CORREÇÃO DEFINITIVA PARA CELULAR ===== */
+
+/* Remove o fundo cinza ao clicar em TODOS OS BOTÕES */
+.carrossel-btn,
+.carrossel-btn *,
+.btn-topo,
+.btn-central,
+.btn-whatsapp-agendar,
+#form-contato button[type="submit"],
+.modal-fechar,
+.indicador {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    outline: none !important;
+}
+
+/* CORREÇÃO DO FUNDO CINZA - FORÇADO */
+.carrossel-btn {
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+/* IMPEDE O FUNDO CINZA NO CLIQUE */
+.carrossel-btn:focus,
+.carrossel-btn:active,
+.carrossel-btn:visited,
+.carrossel-btn:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* EFEITO DE CLIQUE (SÓ O ENCOLHIMENTO) */
+.carrossel-btn:active {
+    transform: translateY(-50%) scale(0.95) !important;
+    transition: transform 0.1s ease !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* GARANTE QUE O HOVER NÃO FIQUE PRESO NO CELULAR */
+@media (hover: none) {
+    .carrossel-btn:hover {
+        background: rgba(0, 0, 0, 0.6) !important;
+        color: #d4af37 !important;
+        transform: translateY(-50%) !important;
+    }
+}
+
+/* REMOVE O FUNDO CINZA DOS INDICADORES */
+.indicador {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    outline: none !important;
+}
+
+.indicador:focus,
+.indicador:active {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
 /* RESPONSIVIDADE */
 
 /* Tablets */
@@ -1081,22 +1150,5 @@ footer {
     .carrossel-indicadores {
         gap: 6px;
         padding: 8px 0 5px 0;
-    }
-}
-.carrossel-btn {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.carrossel-btn:active {
-    transform: translateY(-50%) scale(0.95) !important;
-    transition: transform 0.1s ease !important;
-}
-
-@media (hover: none) {
-    .carrossel-btn:hover {
-        background: rgba(0, 0, 0, 0.6);
-        color: #d4af37;
-        transform: translateY(-50%);
     }
 }
